@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2hf-3z-yVr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2hf-3z-yVr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Checklists-->
@@ -39,7 +39,7 @@
                     <navigationItem key="navigationItem" title="Checklists" id="ncJ-5l-4QY">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="w0J-Xl-dlk">
                             <connections>
-                                <segue destination="hL3-JM-tyd" kind="presentation" animates="NO" id="Wq4-hd-jLa"/>
+                                <segue destination="hL3-JM-tyd" kind="presentation" identifier="AddItem" id="Wq4-hd-jLa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
