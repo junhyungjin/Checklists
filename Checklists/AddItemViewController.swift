@@ -20,6 +20,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     
     weak var delegate: AddItemViewControllerDelegate?
+    var itemToEdit: ChecklistItem?
     
     @IBAction func cancel() {
         delegate?.addItemViewControllerDidCancel(self)
@@ -54,5 +55,14 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
             doneBarButton.enabled = false
         }
         return true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let item = itemToEdit {
+            title = "Edit Item"
+            textField.text = item.text
+        }
     }
 }
