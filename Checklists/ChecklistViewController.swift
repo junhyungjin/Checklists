@@ -144,20 +144,26 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     }
     
     func addItemViewControllerDidCancel(controller: AddItemViewController) {
-        
         dismissViewControllerAnimated(true, completion: nil)
     }
     
     func addItemViewController(controller: AddItemViewController, didFinishAddingItem item: ChecklistItem) {
-        
         let newRowIndex = items.count
-        
         items.append(item)
-        
         let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
         let indexPaths = [indexPath]
         tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
         
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    func addItemViewController(controller: AddItemViewController, didFinishEditingItem item: ChecklistItem) {
+        if let index = items.indexOf(item) {
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                configureTextForCell(cell, withChecklistItem: item) }
+        }
         dismissViewControllerAnimated(true, completion: nil)
     }
     
