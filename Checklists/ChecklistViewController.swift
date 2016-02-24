@@ -119,6 +119,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
             configureCheckmarkForCell(cell, withChecklistItem: item)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        saveChecklistItems()
     }
     
     func configureCheckmarkForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
@@ -143,6 +144,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         // 2
         let indexPaths = [indexPath]
         tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        saveChecklistItems()
     }
     
     func itemDetailViewControllerDidCancel(controller: ItemDetailViewController) {
@@ -157,6 +159,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
         
         dismissViewControllerAnimated(true, completion: nil)
+        saveChecklistItems()
     }
     
     
@@ -167,6 +170,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
                 configureTextForCell(cell, withChecklistItem: item) }
         }
         dismissViewControllerAnimated(true, completion: nil)
+        saveChecklistItems()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -194,6 +198,14 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     func dataFilePath() -> String {
         let directory = documentsDirectory() as NSString
         return directory.stringByAppendingPathComponent("Checklists.plist")
+    }
+    
+    func saveChecklistItems() {
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+        archiver.encodeObject(items, forKey: "ChecklistItems")
+        archiver.finishEncoding()
+        data.writeToFile(dataFilePath(), atomically: true)
     }
     
 }
